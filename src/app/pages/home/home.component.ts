@@ -14,6 +14,10 @@ export class HomeComponent implements OnInit {
   constructor(private stationService: StationService) {}
 
   ngOnInit() {
+    this.loadStations();
+  }
+
+  loadStations() {
     this.stationService.getAllStation().subscribe({
       next: (res: ResponseInterface) => {
         this.stationList = res.data;
