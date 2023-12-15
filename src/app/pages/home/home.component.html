@@ -1,0 +1,46 @@
+<div class="container my-5">
+  <div class="row">
+    <div class="col-sm-12 mb-5">
+      <h1 class="text-center">Book ticket</h1>
+    </div>
+    <div class="col-sm-6">
+      <form class="mt-5">
+        <div class="row">
+          <div class="col-md-6">
+            <label for="fromStation" class="form-label">From station</label>
+            <select id="fromStation" class="form-select">
+              <option selected>Choose...</option>
+              <option *ngFor="let station of stationList">
+                {{ station.stationName }}
+              </option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label for="toStation" class="form-label">To station</label>
+            <select id="toStation" class="form-select">
+              <option selected>Choose...</option>
+              <option *ngFor="let station of stationList">
+                {{ station.stationName }}
+              </option>
+            </select>
+          </div>
+          <div class="col-md-6 mt-4">
+            <label for="inputState" class="form-label">Date of travel</label>
+            <input
+              type="date"
+              name="travelDate"
+              id="inputState"
+              class="form-control"
+            />
+          </div>
+          <div class="col-md-12 mt-4 text-center">
+            <button class="btn btn-primary">Search</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-sm-6">
+      <img src="../../../assets/home.jpeg" class="w-100" alt="" />
+    </div>
+  </div>
+</div>
