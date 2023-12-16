@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CONSTANT } from 'src/app/constant/constant';
+import { Login } from 'src/app/models/Login';
 import { PassengerInterface } from 'src/app/models/PassengerModel';
 import { ResponseInterface } from 'src/app/models/ResponseModel';
 import { environment } from 'src/environments/environment.development';
@@ -22,6 +23,13 @@ export class PassengerService {
     return this.http.post<ResponseInterface>(
       this.apiEndPoint + CONSTANT.ENDPOINTS.ADD_UPDATE_PASSENGER,
       registerData
+    );
+  }
+
+  loginPassenger(loginData: Login): Observable<ResponseInterface> {
+    return this.http.post<ResponseInterface>(
+      this.apiEndPoint + CONSTANT.ENDPOINTS.LOGIN_PASSENGER,
+      loginData
     );
   }
 }
