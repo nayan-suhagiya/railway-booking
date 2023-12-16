@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ResponseInterface } from 'src/app/models/ResponseModel';
+import { SearchModel } from 'src/app/models/SearchModel';
 import { environment } from 'src/environments/environment.development';
 
 @Injectable({
@@ -20,6 +21,16 @@ export class StationService {
 
     return this.http.get<ResponseInterface>(
       this.apiEndPoint + CONSTANT.ENDPOINTS.GET_ALL_STATIONS
+    );
+  }
+
+  getTrainsBetweenStations(
+    searchData: SearchModel
+  ): Observable<ResponseInterface> {
+    return this.http.get<ResponseInterface>(
+      this.apiEndPoint +
+        CONSTANT.ENDPOINTS.GET_TRAINS_BETWEEN_STATIONS +
+        `?departureStationId=${searchData.departureStationId}&arrivalStationId=${searchData.arrivalStationId}&departureDate=${searchData.departureDate}`
     );
   }
 }

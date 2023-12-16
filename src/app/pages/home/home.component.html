@@ -4,22 +4,36 @@
       <h1 class="text-center">Book ticket</h1>
     </div>
     <div class="col-sm-6">
-      <form class="mt-5">
+      <form class="mt-5" [formGroup]="searchForm" (submit)="searchFormHandle()">
         <div class="row">
           <div class="col-md-6">
             <label for="fromStation" class="form-label">From station</label>
-            <select id="fromStation" class="form-select">
+            <select
+              id="fromStation"
+              class="form-select"
+              formControlName="departureStationId"
+            >
               <option selected>Choose...</option>
-              <option *ngFor="let station of stationList">
+              <option
+                *ngFor="let station of stationList"
+                value="{{ station.stationID }}"
+              >
                 {{ station.stationName }}
               </option>
             </select>
           </div>
           <div class="col-md-6">
             <label for="toStation" class="form-label">To station</label>
-            <select id="toStation" class="form-select">
+            <select
+              id="toStation"
+              class="form-select"
+              formControlName="arrivalStationId"
+            >
               <option selected>Choose...</option>
-              <option *ngFor="let station of stationList">
+              <option
+                *ngFor="let station of stationList"
+                value="{{ station.stationID }}"
+              >
                 {{ station.stationName }}
               </option>
             </select>
@@ -31,10 +45,11 @@
               name="travelDate"
               id="inputState"
               class="form-control"
+              formControlName="departureDate"
             />
           </div>
           <div class="col-md-12 mt-4 text-center">
-            <button class="btn btn-primary">Search</button>
+            <button class="btn btn-primary" type="submit">Search</button>
           </div>
         </div>
       </form>
