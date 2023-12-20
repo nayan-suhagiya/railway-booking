@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { SearchModel } from 'src/app/models/SearchModel';
 import { StationService } from '../services/station.service';
 import { ResponseInterface } from 'src/app/models/ResponseModel';
+import { StationInterface } from 'src/app/models/Station';
 
 @Component({
   selector: 'app-search',
@@ -15,6 +16,7 @@ export class SearchComponent implements OnInit {
   departureDate!: string;
   searchData!: SearchModel;
   searchResult!: SearchModel[];
+  stationList!: StationInterface[];
 
   constructor(
     private router: ActivatedRoute,
@@ -39,6 +41,7 @@ export class SearchComponent implements OnInit {
 
     // console.log(this.searchData);
     this.loadSearch();
+    this.loadStations();
   }
 
   loadSearch() {
@@ -52,6 +55,21 @@ export class SearchComponent implements OnInit {
       },
       complete: () => {
         console.log('Train data fetched!');
+      },
+    });
+  }
+
+  loadStations() {
+    this.stationService.getAllStation().subscribe({
+      next: (res: ResponseInterface) => {
+        this.stationList = res.data;
+        // console.log(this.stationList);
+      },
+      error: (err) => {
+        console.log(err);
+      },
+      complete: () => {
+        console.log('Station data fetched');
       },
     });
   }

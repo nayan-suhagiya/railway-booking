@@ -46,8 +46,13 @@ export class HomeComponent implements OnInit {
 
   searchFormHandle() {
     // console.log(this.searchForm.value);
-    this.router.navigate([
-      `/search/${this.searchForm.value.departureStationId}/${this.searchForm.value.arrivalStationId}/${this.searchForm.value.departureDate}`,
-    ]);
+    const loggedInData = sessionStorage.getItem('LoggedInPassenger');
+    if (loggedInData) {
+      this.router.navigate([
+        `/search/${this.searchForm.value.departureStationId}/${this.searchForm.value.arrivalStationId}/${this.searchForm.value.departureDate}`,
+      ]);
+    } else {
+      alert('Please login!');
+    }
   }
 }

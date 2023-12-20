@@ -1,9 +1,10 @@
 import { NgModule, Component } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, CanActivateFn } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { BookingsComponent } from './pages/bookings/bookings.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { SearchComponent } from './pages/search/search.component';
+import { authGuard } from './auth.guard';
 
 const routes: Routes | any = [
   {
@@ -22,6 +23,7 @@ const routes: Routes | any = [
   {
     path: 'search/:departureStationId/:arrivalStationId/:departureDate',
     component: SearchComponent,
+    canActivate: [authGuard],
   },
   {
     path: 'admin',
