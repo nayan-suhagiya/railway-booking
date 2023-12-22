@@ -3,7 +3,10 @@
     <div class="col-md-4">
       <label for="fromStation" class="form-label">From station</label>
       <select id="fromStation" class="form-select">
-        <option selected>Choose...</option>
+        <option>Choose...</option>
+        <option value="{{ departureStationId }}" selected>
+          {{ departureStation }}
+        </option>
         <option
           *ngFor="let station of stationList"
           value="{{ station.stationID }}"
@@ -16,6 +19,10 @@
       <label for="toStation" class="form-label">To station</label>
       <select id="toStation" class="form-select">
         <option selected>Choose...</option>
+        <option>Choose...</option>
+        <option value="{{ arrivalStationId }}" selected>
+          {{ arrivalStation }}
+        </option>
         <option
           *ngFor="let station of stationList"
           value="{{ station.stationID }}"
@@ -42,8 +49,9 @@
 </form>
 <section class="mt-4 container">
   <p class="m-0 p-2 border">
-    <b>{{ 0 + 0 }}</b> Result Found For <b>{{ "Pune" }}</b> to
-    <b>{{ "Nagpur" }}</b> on <b>{{ "12-12-2023" }}</b>
+    <b>{{ searchResultCount }}</b> Result Found For
+    <b>{{ departureStation }}</b> to <b>{{ arrivalStation }}</b> on
+    <b>{{ departureDate }}</b>
   </p>
   <p class="m-0 text-danger mt-4">No Trains Available!</p>
 </section>
